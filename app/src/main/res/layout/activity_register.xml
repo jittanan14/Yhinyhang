@@ -8,232 +8,304 @@
     android:orientation="vertical"
     tools:context=".Register">
 
-    <RelativeLayout
-        android:id="@+id/PicUser"
+    <ScrollView
+        android:id="@+id/scrollable"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-
-        >
-
-        <ImageView
-            android:id="@+id/user"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/uploaduser"
-            android:layout_centerHorizontal="true"
-            />
-
-    </RelativeLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/layout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/PicUser"
-        android:layout_centerVertical="true"
-        android:background="@drawable/bg_main2"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="40dp"
-        >
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_email2"
-            android:drawablePadding="5dp"
-            android:hint="อีเมล"
-            android:inputType="textEmailAddress"
-            android:fontFamily="@font/edpoonpunn"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout5"
-        android:layout_width="367dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout4"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bg_main2"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:src="@drawable/ic_password2" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/editTextPassword"
+            <RelativeLayout
+                android:id="@+id/PicUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_password2"
-                android:drawablePadding="5dp"
-                android:fontFamily="@font/edpoonpunn"
-                android:hint="รหัสผ่าน"
-                android:inputType="textPassword"
-                app:errorEnabled="true"
-                app:passwordToggleEnabled="true">
+                android:layout_marginTop="60dp"
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/Password"
+                >
+
+                <ImageView
+                    android:id="@+id/user"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    app:srcCompat="@drawable/uploaduser" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/PicUser"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/gradient_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/editTextEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@drawable/ic_email2"
                     android:drawablePadding="5dp"
                     android:fontFamily="@font/edpoonpunn"
-                    android:inputType="textPassword" />
+                    android:hint="อีเมล"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="#708090" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout4"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/gradient_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="center"
+
                     android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/ic_password2" />
+
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/confirm_pass"
+                        android:id="@+id/editTextPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_password2"
                         android:drawablePadding="5dp"
                         android:fontFamily="@font/edpoonpunn"
-                        android:hint="ยืนยันรหัสผ่าน"
+                        android:hint="รหัสผ่าน"
                         android:inputType="textPassword"
+                        android:textColorHint="#708090"
                         app:errorEnabled="true"
                         app:passwordToggleEnabled="true">
 
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/confirm_Password"
+                            android:id="@+id/Password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:drawablePadding="5dp"
-
                             android:fontFamily="@font/edpoonpunn"
                             android:inputType="textPassword" />
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/confirm_pass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_password2"
+                                android:drawablePadding="5dp"
+                                android:fontFamily="@font/edpoonpunn"
+                                android:hint="ยืนยันรหัสผ่าน"
+                                android:inputType="textPassword"
+                                android:textColorHint="#708090"
+                                app:errorEnabled="true"
+                                app:passwordToggleEnabled="true">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/confirm_Password"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:drawablePadding="5dp"
+
+                                    android:fontFamily="@font/edpoonpunn"
+                                    android:inputType="textPassword" />
+
+                            </android.support.design.widget.TextInputLayout>
+                        </LinearLayout>
+
                     </android.support.design.widget.TextInputLayout>
+
                 </LinearLayout>
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/layout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout5"
-        android:layout_centerVertical="true"
-        android:background="@drawable/bg_main2"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        >
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_person"
-            android:drawablePadding="5dp"
-            android:hint="ชื่อผู้ใช้"
-            android:inputType="text"
-            android:fontFamily="@font/edpoonpunn"
-            />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/textViewGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="เพศ"
-                android:textColor="#997E75"
-                android:textSize="16dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="8dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/radioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radio_one"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="#FFFFFF"
-                        android:checked="true"
-
-                        android:text="ชาย"
-                        android:textColor="#997E75" />
-
-                    <RadioButton
-                        android:id="@+id/radio_two"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="#FFFFFF"
-
-                        android:text="หญิง"
-                        android:textColor="#997E75" />
-                </RadioGroup>
-
-
 
             </LinearLayout>
 
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/layout6"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_below="@+id/layout5"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/gradient_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_person"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/edpoonpunn"
+                    android:hint="ชื่อผู้ใช้"
+                    android:inputType="text"
+                    android:textColor="#708090" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/edpoonpunn"
+                        android:gravity="center_vertical"
+                        android:text="เพศ"
+                        android:textColor="#708090"
+                        android:textSize="18dp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radio_one"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="#FFFFFF"
+                                android:checked="true"
+                                android:fontFamily="@font/edpoonpunn"
+                                android:text="ชาย"
+                                android:textColor="#708090"
+                                android:textSize="18dp" />
+
+                            <RadioButton
+                                android:id="@+id/radio_two"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="#FFFFFF"
+                                android:fontFamily="@font/edpoonpunn"
+                                android:text="หญิง"
+                                android:textColor="#708090"
+                                android:textSize="18dp" />
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/edpoonpunn"
+                            android:text="วันเกิด"
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/date_birth"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/ic_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_calendar" />
+
+                        <TextView
+                            android:id="@+id/text_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/edpoonpunn"
+                            android:text="เลือกวันเกิด"
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ธาตุ:"
+                            android:textColor="#708090"
+                            android:textSize="18dp"
+                            android:drawableLeft="@drawable/ic_drop"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/edpoonpunn"
+                            />
+
+                        <TextView
+                            android:id="@+id/element"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#708090"
+                            android:textSize="18dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="ชื่อธาตุ"
+                            android:fontFamily="@font/edpoonpunn"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-
-
-
+    </ScrollView>
 
 </RelativeLayout>
 
