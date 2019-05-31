@@ -5,16 +5,22 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,15 +28,28 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class Register extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     LinearLayout date_birth;
     TextView text_view_birth;
     TextView element_name;
+    ImageView profile;
+    Button back_login;
+    EditText Text_Email;
+    TextInputEditText Pass_word ;
+    TextInputEditText confirm_pass;
+    EditText name_edit;
+    RadioButton radio_men_button ;
+    RadioButton radio_women_button;
+    TextView text_birth;
+    TextView text_element;
+    EditText food_edit;
+    CircleImageView pic_profile;
 
     private final int REQUEST_CODE=33;
-
     String TAG="register";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +58,38 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
 
+
         date_birth = findViewById(R.id.date_birth);
         text_view_birth = findViewById(R.id.text_date);
         element_name = findViewById(R.id.element);
+        profile = findViewById(R.id.user);
+        back_login = findViewById(R.id.button_back_login);
+
+        back_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Register.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // user
+        Text_Email = findViewById(R.id.TextEmail);
+        Pass_word = findViewById(R.id.Password);
+        confirm_pass = findViewById(R.id.confirm_Password);
+        name_edit = findViewById(R.id.name);
+        radio_men_button = findViewById(R.id.radio_men);
+        radio_women_button = findViewById(R.id.radio_women);
+        text_birth = findViewById(R.id.text_date);
+        text_element = findViewById(R.id.element);
+        food_edit = findViewById(R.id.food_lose);
+        pic_profile = findViewById(R.id.user);
+
+
+
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-
-        //calendar birthday
-
 
         //Select photo profile
         ImageView upload = findViewById(R.id.user);
@@ -62,6 +104,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
             }
         });
 
+        //calendar birthday
         date_birth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,9 +169,14 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
                 case REQUEST_CODE:
                     if (resultCode == Activity.RESULT_OK) {
-                        //data gives you the image uri. Try to convert that to bitmap
+
+                        Uri selectedImage = data.getData();
+                        profile.setImageURI(selectedImage);
+                        Toast.makeText(this, "เปลี่ยนรูปภาพแล้ว", Toast.LENGTH_SHORT).show();
+
                         break;
                     } else if (resultCode == Activity.RESULT_CANCELED) {
+
                         Log.e(TAG, "Selecting picture cancelled");
                     }
                     break;
@@ -136,6 +184,46 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         } catch (Exception e) {
             Log.e(TAG, "Exception in onActivityResult : " + e.getMessage());
         }
+    }
+
+    private void userSignUp(){
+
+        String email = Text_Email.getText().toString().trim();
+        String password = Pass_word.getText().toString().trim();
+        String confirm_password = confirm_pass.getText().toString().trim();
+        String username = name_edit.getText().toString().trim();
+        String radio_men = radio_men_button.getText().toString().trim();
+        String radio_women = radio_women_button.getText().toString().trim();
+        String Text_birth = text_birth.getText().toString().trim();
+        String Text_element = text_element.getText().toString().trim();
+        String Food_edit = food_edit.getText().toString().trim();
+
+        if (email.isEmpty()){
+            Text_Email.setError("กรอกอีเมล");
+            Text_Email.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            Text_Email.setError("อีเมลไม่ถูกต้อง");
+            Text_Email.requestFocus();
+            return;
+        }
+        if(password.isEmpty()){
+            Pass_word.setError("กรอกรหัสผ่าน");
+            Pass_word.requestFocus();
+            return;
+        }
+        if(password.length()<6){
+            Pass_word.setError("รหัสผ่านต้องมีความยาวตั้งแต่ 6 ตัวขึ้นไป");
+            Pass_word.requestFocus();
+            return;
+        }
+        if(password.equals(confirm_password)){
+            confirm_pass.setError("รหัสผ่านไม่ถูกต้อง");
+            confirm_pass.requestFocus();
+            return;
+        }
+
     }
 
 }

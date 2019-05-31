@@ -34,8 +34,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_drop" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/drop.svg" />
+                            <entry key="outputName" value="ic_harvest" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/harvest.svg" />
                           </map>
                         </option>
                       </PersistentState>
