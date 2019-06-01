@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@drawable/gradient_bg2"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
-        android:fontFamily="@font/edpoonpunn"
+        android:fontFamily="@font/printable4u"
         android:gravity="center"
         android:text="YHINYHANG"
         android:textColor="#FFFFFF"
@@ -42,23 +42,23 @@
         >
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/TextEmail_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="5dp"
             android:hint="email"
             android:inputType="textEmailAddress"
-            android:fontFamily="@font/edpoonpunn"
+            android:fontFamily="@font/printable4u"
             />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/TextPassword_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="5dp"
-            android:fontFamily="@font/edpoonpunn"
+            android:fontFamily="@font/printable4u"
             android:hint="password"
             android:inputType="textPassword" />
     </LinearLayout>
@@ -73,7 +73,7 @@
     >
     <LinearLayout
         android:id="@+id/layout3"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70px"
         android:layout_centerVertical="true"
@@ -89,10 +89,11 @@
             android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/edpoonpunn"
+            android:fontFamily="@font/printable4u"
             android:textStyle="bold"
             android:textSize="40px"
-            android:text="sign in"
+            android:text="Sign in"
+            android:gravity="center"
 
             />
 
@@ -100,7 +101,7 @@
 
     <LinearLayout
         android:id="@+id/layout4"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70px"
         android:layout_below="@+id/layout1"
@@ -117,10 +118,11 @@
             android:id="@+id/signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/edpoonpunn"
+            android:fontFamily="@font/printable4u"
             android:textStyle="bold"
             android:textSize="40px"
             android:text="Sign up"
+            android:gravity="center"
 
             />
 

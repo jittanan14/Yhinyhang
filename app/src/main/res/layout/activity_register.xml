@@ -8,90 +8,82 @@
     android:orientation="vertical"
     tools:context=".Register">
 
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/gradient_bg"
-        android:baselineAligned="false"/>
-
+        android:baselineAligned="false" />
 
     <TextView
         android:id="@+id/text_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/printable4u"
         android:gravity="center"
         android:text="สมัครสมาชิก"
         android:textColor="#708090"
-        android:fontFamily="@font/edpoonpunn"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/button_back_login"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/ic_back" />
 
     <ScrollView
         android:id="@+id/scrollable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        >
-
-
+        android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center_vertical"
             android:orientation="vertical">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            >
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/user"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/user" />
 
-        </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout4"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/PicUser"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/gradient_bg"
-                android:orientation="vertical"
-                android:padding="10dp">
+                app:errorEnabled="true"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="254"
+                >
 
-                <EditText
-                    android:id="@+id/TextEmail"
+                <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:hint="อีเมล"
+                    android:fontFamily="@font/printable4u"
                     android:drawableLeft="@drawable/ic_email2"
                     android:drawablePadding="5dp"
-                    android:fontFamily="@font/edpoonpunn"
-                    android:hint="อีเมล"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="#708090" />
+                    android:textColorHint="#708090"
 
-            </LinearLayout>
+                    />
+
+
+            </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/layout5"
@@ -99,9 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout4"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/gradient_bg"
                 android:orientation="vertical"
                 android:padding="10dp">
@@ -122,12 +112,11 @@
                         android:src="@drawable/ic_password2" />
 
                     <android.support.design.widget.TextInputLayout
-                        android:id="@+id/editTextPassword"
+                        android:id="@+id/Password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_password2"
                         android:drawablePadding="5dp"
-                        android:fontFamily="@font/edpoonpunn"
                         android:hint="รหัสผ่าน"
                         android:inputType="textPassword"
                         android:textColorHint="#708090"
@@ -135,7 +124,6 @@
                         app:passwordToggleEnabled="true">
 
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/Password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -156,7 +144,6 @@
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_password2"
                                 android:drawablePadding="5dp"
-                                android:fontFamily="@font/edpoonpunn"
                                 android:hint="ยืนยันรหัสผ่าน"
                                 android:inputType="textPassword"
                                 android:textColorHint="#708090"
@@ -164,12 +151,10 @@
                                 app:passwordToggleEnabled="true">
 
                                 <android.support.design.widget.TextInputEditText
-                                    android:id="@+id/confirm_Password"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:drawablePadding="5dp"
-
                                     android:fontFamily="@font/edpoonpunn"
                                     android:inputType="textPassword" />
 
@@ -189,9 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout5"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/gradient_bg"
                 android:orientation="vertical"
                 android:padding="10dp">
@@ -202,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_person"
                     android:drawablePadding="5dp"
-                    android:fontFamily="@font/edpoonpunn"
+                    android:fontFamily="@font/printable4u"
                     android:hint="ชื่อผู้ใช้"
                     android:inputType="text"
                     android:textColor="#708090" />
@@ -219,7 +202,7 @@
                         android:id="@+id/textViewGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/edpoonpunn"
+                        android:fontFamily="@font/printable4u"
                         android:gravity="center_vertical"
                         android:text="เพศ"
                         android:textColor="#708090"
@@ -246,7 +229,7 @@
                                 android:layout_height="wrap_content"
                                 android:buttonTint="#FFFFFF"
                                 android:checked="true"
-                                android:fontFamily="@font/edpoonpunn"
+                                android:fontFamily="@font/printable4u"
                                 android:text="ชาย"
                                 android:textColor="#708090"
                                 android:textSize="18dp" />
@@ -256,7 +239,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:buttonTint="#FFFFFF"
-                                android:fontFamily="@font/edpoonpunn"
+                                android:fontFamily="@font/printable4u"
                                 android:text="หญิง"
                                 android:textColor="#708090"
                                 android:textSize="18dp" />
@@ -272,7 +255,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/edpoonpunn"
+                            android:fontFamily="@font/printable4u"
                             android:text="วันเกิด"
                             android:textColor="#708090"
                             android:textSize="18dp" />
@@ -295,7 +278,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:fontFamily="@font/edpoonpunn"
+                            android:fontFamily="@font/printable4u"
                             android:text="เลือกวันเกิด"
                             android:textColor="#708090"
                             android:textSize="18dp" />
@@ -310,24 +293,22 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ธาตุ:"
-                            android:textColor="#708090"
-                            android:textSize="18dp"
                             android:drawableLeft="@drawable/ic_drop"
                             android:drawablePadding="5dp"
-                            android:fontFamily="@font/edpoonpunn"
-                            />
+                            android:fontFamily="@font/printable4u"
+                            android:text="ธาตุ:"
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
 
                         <TextView
                             android:id="@+id/element"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#708090"
-                            android:textSize="18dp"
                             android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/printable4u"
                             android:text="ชื่อธาตุ"
-                            android:fontFamily="@font/edpoonpunn"
-                            />
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
 
                     </LinearLayout>
 
@@ -341,9 +322,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout7"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/gradient_bg"
                 android:orientation="vertical"
                 android:padding="10dp">
@@ -354,7 +333,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_harvest"
                     android:drawablePadding="5dp"
-                    android:fontFamily="@font/edpoonpunn"
+                    android:fontFamily="@font/printable4u"
                     android:hint="ชื่อวัตถุดิบอาหารที่แพ้ (ถ้าไม่มี ให้ -)"
                     android:inputType="textEmailAddress"
                     android:textColorHint="#708090" />
@@ -373,34 +352,33 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                >
-            <Button
-                android:id="@+id/ok"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_ok"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/edpoonpunn"
-                android:text="ยืนยัน"
-                android:textSize="25dp"
-                android:textColor="#708090"
-                android:layout_marginRight="15dp"
-                />
-                <Button
-                    android:id="@+id/cancel"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_cancel"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/edpoonpunn"
-                    android:text="ยกเลิก"
-                    android:textSize="25dp"
-                    android:textColor="#708090"
-                    />
+                    android:layout_gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/ok"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/bg_ok"
+                        android:fontFamily="@font/printable4u"
+                        android:text="ยืนยัน"
+                        android:textColor="#708090"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/bg_cancel"
+                        android:fontFamily="@font/printable4u"
+                        android:text="ยกเลิก"
+                        android:textColor="#708090"
+                        android:textSize="25dp" />
                 </LinearLayout>
 
             </LinearLayout>
