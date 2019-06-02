@@ -1,6 +1,7 @@
 package com.example.jittanan.yhinyhang.api;
 
 import com.example.jittanan.yhinyhang.DefaultResponse;
+import com.example.jittanan.yhinyhang.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -20,5 +21,12 @@ public interface Api {
             @Field("element_user") String element_user,
             @Field("food_user") String food_user,
             @Field("Pic_user") String Pic_user
+    );
+
+    @FormUrlEncoded
+    @POST("loginuser.php")
+    Call<LoginResponse> userLogin(
+            @Field("email_user") String email,
+            @Field("pass_user") String password
     );
 }

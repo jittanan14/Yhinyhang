@@ -67,7 +67,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="254"
+                app:counterMaxLength="100"
                 >
 
                 <android.support.design.widget.TextInputEditText
@@ -342,7 +342,7 @@
 
             <LinearLayout
                 android:id="@+id/layout10"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout9"
                 android:layout_centerVertical="true"
@@ -350,36 +350,18 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:orientation="vertical"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
+                android:padding="10dp"
+                android:layout_gravity="center_horizontal">
 
                     <Button
                         android:id="@+id/ok"
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginRight="15dp"
                         android:background="@drawable/bg_ok"
                         android:fontFamily="@font/printable4u"
                         android:text="ยืนยัน"
                         android:textColor="#708090"
                         android:textSize="25dp" />
-
-                    <Button
-                        android:id="@+id/cancel"
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/bg_cancel"
-                        android:fontFamily="@font/printable4u"
-                        android:text="ยกเลิก"
-                        android:textColor="#708090"
-                        android:textSize="25dp" />
-                </LinearLayout>
 
             </LinearLayout>
 

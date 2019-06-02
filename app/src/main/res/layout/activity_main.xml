@@ -72,7 +72,7 @@
     android:layout_centerHorizontal="true"
     >
     <LinearLayout
-        android:id="@+id/layout3"
+
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70px"

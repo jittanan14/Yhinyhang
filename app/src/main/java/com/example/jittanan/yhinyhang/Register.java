@@ -1,15 +1,11 @@
 package com.example.jittanan.yhinyhang;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,25 +13,24 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.jittanan.yhinyhang.api.RetrofitClient;
 
 import java.util.Calendar;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Register extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -45,27 +40,28 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     TextView element_name;
     ImageView profile;
     Button back_login;
-   private TextInputLayout Text_Email;
-   private TextInputLayout Pass_word ;
-   private TextInputLayout confirm_pass;
+    TextInputLayout Text_Email;
+    TextInputLayout Pass_word;
+    TextInputLayout confirm_pass;
     EditText name_edit;
-    RadioButton radio_men_button ;
+    RadioButton radio_men_button;
     RadioButton radio_women_button;
     TextView text_birth;
     TextView text_element;
     EditText food_edit;
     CircleImageView pic_profile;
     Button okay;
+    RetrofitClient retro;
 
 
-    private final int REQUEST_CODE=33;
-    String TAG="register";
+    private final int SELECT_IMAGE = 33;
+    String TAG = "register";
 
     private static final Pattern PASSWORD_PATTERN
             = Pattern.compile("^" +
-                    "(?=\\S+$)" +           //no white spaces
-                    ".{6,}" +               //at least 6 characters
-                    "$");
+            "(?=\\S+$)" +           //no white spaces
+            ".{6,}" +               //at least 6 characters
+            "$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +70,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
 
+        retro = new RetrofitClient();
 
         date_birth = findViewById(R.id.date_birth);
         text_view_birth = findViewById(R.id.text_date);
@@ -101,7 +98,39 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         food_edit = findViewById(R.id.food_lose);
         pic_profile = findViewById(R.id.user);
 
+        //Add data_member to database server
         okay = findViewById(R.id.ok);
+        okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = Text_Email.getEditText().getText().toString();
+                String pass_word = Pass_word.getEditText().getText().toString();
+                String username = name_edit.getText().toString();
+                String gender = CheckGender();
+                String birthday = text_birth.getText().toString();
+                String element = text_element.getText().toString();
+                String food = food_edit.getText().toString();
+//                String picture = pic_profile;
+
+                Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,food, "fff");
+                call.enqueue(new Callback<DefaultResponse>() {
+                    @Override
+                    public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                        if(response.body().isStatus()) {
+                            Intent openlogin = new Intent(Register.this, MainActivity.class);
+                            startActivity(openlogin);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
 
         //Email
         Text_Email.getEditText().addTextChangedListener(new TextWatcher() {
@@ -167,8 +196,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"),REQUEST_CODE);
-
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE);
             }
         });
 
@@ -179,7 +207,6 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 showDatePickerDialog();
             }
         });
-
 
 
     }
@@ -200,34 +227,30 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        month=month+1;
+        month = month + 1;
         String m1;
         String date;
-        if (String.valueOf(month).length()==1){
-            date = (String.valueOf(dayOfMonth) +" "+"0"+ String.valueOf(month) +" "+ String.valueOf(year+543));
-            m1 = "0"+ String.valueOf(month);
-        }
-        else  {
-            date = (String.valueOf(dayOfMonth) +" "+ String.valueOf(month)+" " + String.valueOf(year+543));
+        if (String.valueOf(month).length() == 1) {
+            date = (String.valueOf(dayOfMonth) + " " + "0" + String.valueOf(month) + " " + String.valueOf(year + 543));
+            m1 = "0" + String.valueOf(month);
+        } else {
+            date = (String.valueOf(dayOfMonth) + " " + String.valueOf(month) + " " + String.valueOf(year + 543));
             m1 = String.valueOf(month);
         }
         text_view_birth.setText(date);
 
-            Element_Cal(m1);
+        Element_Cal(m1);
     }
 
-    public  void Element_Cal(String m1){
+    public void Element_Cal(String m1) {
 
-        if (m1.equals("01")||m1.equals("05")||m1.equals("09")){
+        if (m1.equals("01") || m1.equals("05") || m1.equals("09")) {
             element_name.setText("ธาตุดิน");
-        }
-        else if (m1.equals("03")||m1.equals("07")||m1.equals("11")){
+        } else if (m1.equals("03") || m1.equals("07") || m1.equals("11")) {
             element_name.setText("ธาตุน้ำ");
-        }
-        else if (m1.equals("02")||m1.equals("06")||m1.equals("10")){
+        } else if (m1.equals("02") || m1.equals("06") || m1.equals("10")) {
             element_name.setText("ธาตุลม");
-        }
-        else if (m1.equals("04")||m1.equals("08")||m1.equals("12")){
+        } else if (m1.equals("04") || m1.equals("08") || m1.equals("12")) {
             element_name.setText("ธาตุไฟ");
 
         }
@@ -238,12 +261,17 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         try {
             switch (requestCode) {
 
-                case REQUEST_CODE:
+                case SELECT_IMAGE:
                     if (resultCode == Activity.RESULT_OK) {
 
                         Uri selectedImage = data.getData();
                         profile.setImageURI(selectedImage);
-                        Toast.makeText(this, "เปลี่ยนรูปภาพแล้ว", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_SHORT).show();
+
+//                        Bundle bundle = data.getExtras();
+//                        Bitmap bitmap = bundle.getParcelable("data");
+////                        image_user = imageToString(bitmap);
+//                        profile.setImageBitmap(bitmap);
 
                         break;
                     } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -270,8 +298,14 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         }
     }
 
+    public String CheckGender() {
 
-
+        if (radio_men_button.isChecked()) {
+            return "m";
+        } else {
+            return "f";
+        }
+    }
 
 
 }
