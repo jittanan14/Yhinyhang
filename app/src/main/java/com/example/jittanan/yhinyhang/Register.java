@@ -53,7 +53,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     Button okay;
     RetrofitClient retro;
 
-
+    String link_image;
     private final int SELECT_IMAGE = 33;
     String TAG = "register";
 
@@ -110,9 +110,9 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 String birthday = text_birth.getText().toString();
                 String element = text_element.getText().toString();
                 String food = food_edit.getText().toString();
-//                String picture = pic_profile;
+                String picture = link_image;
 
-                Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,food, "fff");
+                Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,food, picture);
                 call.enqueue(new Callback<DefaultResponse>() {
                     @Override
                     public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
@@ -266,6 +266,9 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 
                         Uri selectedImage = data.getData();
                         profile.setImageURI(selectedImage);
+                         link_image = selectedImage.toString();
+
+
                         Toast.makeText(this, selectedImage.toString(), Toast.LENGTH_SHORT).show();
 
 //                        Bundle bundle = data.getExtras();

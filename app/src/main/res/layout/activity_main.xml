@@ -4,129 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg2"
+    tools:context=".MainActivity"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <RelativeLayout
-        android:id="@+id/yhin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/yhinyhang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:fontFamily="@font/printable4u"
-        android:gravity="center"
-        android:text="YHINYHANG"
-        android:textColor="#FFFFFF"
-        android:textSize="50dp"
-        android:textStyle="bold"
-
-        />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/yhin"
-        android:layout_marginTop="10dp"
-        android:id="@+id/layout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bg_white"
-        android:orientation="vertical"
-        android:padding="10dp"
-        >
-
-        <EditText
-            android:id="@+id/TextEmail_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_email"
-            android:drawablePadding="5dp"
-            android:hint="email"
-            android:inputType="textEmailAddress"
-            android:fontFamily="@font/printable4u"
-            />
-
-        <EditText
-            android:id="@+id/TextPassword_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/printable4u"
-            android:hint="password"
-            android:inputType="textPassword" />
-    </LinearLayout>
-
-
-<LinearLayout
-    android:id="@+id/layout2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/layout1"
-    android:layout_centerHorizontal="true"
+    android:background="@drawable/bg_main"
     >
-    <LinearLayout
 
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70px"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/bg_white"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/gradient_bg2"
+        android:baselineAligned="false">
 
-        <TextView
-            android:id="@+id/signin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/printable4u"
-            android:textStyle="bold"
-            android:textSize="40px"
-            android:text="Sign in"
-            android:gravity="center"
-
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout4"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70px"
-        android:layout_below="@+id/layout1"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bg_white"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_centerHorizontal="true"
-        >
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_logout" />
 
         <TextView
-            android:id="@+id/signup"
-            android:layout_width="match_parent"
+            android:id="@+id/text_create"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/printable4u"
-            android:textStyle="bold"
-            android:textSize="40px"
-            android:text="Sign up"
-            android:gravity="center"
+            android:text="Home"
+            android:textColor="#708090"
+            android:textSize="20sp" />
 
-            />
+    </android.support.v7.widget.Toolbar>
 
-    </LinearLayout>
-</LinearLayout>
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        app:itemBackground="@null"
+        app:menu="@menu/bottom_navigation" />
+
 
 </RelativeLayout>
