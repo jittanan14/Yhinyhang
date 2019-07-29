@@ -1,9 +1,7 @@
 package com.example.jittanan.yhinyhang;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +36,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     LinearLayout date_birth;
     TextView text_view_birth;
     TextView element_name;
+    TextView yhinyhang;
     ImageView profile;
     Button back_login;
     TextInputLayout Text_Email;
@@ -48,6 +47,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     RadioButton radio_women_button;
     TextView text_birth;
     TextView text_element;
+    TextView text_body;
     EditText food_edit;
     CircleImageView pic_profile;
     Button okay;
@@ -66,15 +66,16 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
+
 
         retro = new RetrofitClient();
 
         date_birth = findViewById(R.id.date_birth);
         text_view_birth = findViewById(R.id.text_date);
         element_name = findViewById(R.id.element);
+        yhinyhang = findViewById(R.id.body);
         profile = findViewById(R.id.user);
         back_login = findViewById(R.id.button_back_login);
 
@@ -95,6 +96,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         radio_women_button = findViewById(R.id.radio_women);
         text_birth = findViewById(R.id.text_date);
         text_element = findViewById(R.id.element);
+        text_body = findViewById(R.id.body);
         food_edit = findViewById(R.id.food_lose);
         pic_profile = findViewById(R.id.user);
 
@@ -109,17 +111,21 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 String gender = CheckGender();
                 String birthday = text_birth.getText().toString();
                 String element = text_element.getText().toString();
+                String body = text_body.getText().toString();
                 String food = food_edit.getText().toString();
                 String picture = link_image;
 
-                Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,food, picture);
+
+
+                Intent openlogin = new Intent(Register.this, Question.class);
+                           startActivity(openlogin);
+                            finish();
+                Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,body,food, picture);
                 call.enqueue(new Callback<DefaultResponse>() {
                     @Override
                     public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                         if(response.body().isStatus()) {
-                            Intent openlogin = new Intent(Register.this, MainActivity.class);
-                            startActivity(openlogin);
-                            finish();
+//
                         }
                     }
 
@@ -228,8 +234,10 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         month = month + 1;
+        int y1=0;
         String m1;
         String date;
+
         if (String.valueOf(month).length() == 1) {
             date = (String.valueOf(dayOfMonth) + " " + "0" + String.valueOf(month) + " " + String.valueOf(year + 543));
             m1 = "0" + String.valueOf(month);
@@ -237,23 +245,81 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
             date = (String.valueOf(dayOfMonth) + " " + String.valueOf(month) + " " + String.valueOf(year + 543));
             m1 = String.valueOf(month);
         }
+        y1 = (year+543);
         text_view_birth.setText(date);
 
-        Element_Cal(m1);
+        Element_Cal(y1);
     }
 
-    public void Element_Cal(String m1) {
+    public void Element_Cal(int y1) {
 
-        if (m1.equals("01") || m1.equals("05") || m1.equals("09")) {
-            element_name.setText("ธาตุดิน");
-        } else if (m1.equals("03") || m1.equals("07") || m1.equals("11")) {
-            element_name.setText("ธาตุน้ำ");
-        } else if (m1.equals("02") || m1.equals("06") || m1.equals("10")) {
-            element_name.setText("ธาตุลม");
-        } else if (m1.equals("04") || m1.equals("08") || m1.equals("12")) {
-            element_name.setText("ธาตุไฟ");
+        int element =0;
+        int element_full = y1;
+        int element_sum = element_full%10;
 
+        int element_two = y1 % 100;
+
+        if(element_sum == 6) {
+            element = 6;
         }
+
+        else if(element_sum < 6){
+            if ((element_full%100) <= 5) {
+                element_sum = (element_sum+10) - 6;
+                element = element_sum;
+                if (element > 6) {
+                    element= element-6 ;
+                }
+
+            }
+            else if ((element_full%100) >= 10 && (element_full%100) <= 99) {
+
+
+                    while (element_two > 6) {
+                        element_two -= 6;
+                        element = element_two;
+                    }
+            }
+        }
+        else if (element_sum >6 ){
+            element = element_sum - 6;
+            Log.e("number ",Integer.toString(element));
+        }
+
+
+        if (element == 1 ) {
+            element_name.setText("ธาตุไม้");
+        } else if (element == 2 ) {
+            element_name.setText("ธาตุดิน");
+        } else if (element == 3) {
+            element_name.setText("ธาตุไฟ");
+        } else if (element == 4) {
+            element_name.setText("ธาตุน้ำ");
+        }else if (element == 5) {
+            element_name.setText("ธาตุดิน");
+        }else if (element == 6) {
+            element_name.setText("ธาตุโลหะ(ทอง)");
+        }
+
+        yhinORyhang(element);
+
+    }
+
+    public void yhinORyhang(int element) {
+        if (element == 1 || element == 9){
+                yhinyhang.setText("หยิน");
+        }else if (element == 2 || element == 8) {
+            yhinyhang.setText("หยาง");
+        }else if (element == 3) {
+            yhinyhang.setText("หยิน");
+        }else if (element == 4) {
+            yhinyhang.setText("หยิน");
+        }else if (element == 5) {
+            yhinyhang.setText("หยาง");
+        }else if (element == 6 || element == 7 ) {
+            yhinyhang.setText("หยาง");
+        }
+
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

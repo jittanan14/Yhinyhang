@@ -2,7 +2,7 @@ package com.example.jittanan.yhinyhang;
 
 public class User {
     private  String email, password, username,
-            gender, birthday, element,food,image_user;
+            gender, birthday, element,body,food,image_user;
 
     public User(String email, String firstname, String lastname, String gender, String birthday, String telephone, String image_user) {
         this.email = email;
@@ -11,6 +11,7 @@ public class User {
         this.gender = gender;
         this.birthday = birthday;
         this.element = element;
+        this.body = body;
         this.food = food;
         this.image_user = image_user;
     }
@@ -34,6 +35,8 @@ public class User {
     public String getElement() {
         return element;
     }
+
+    public String getBody() { return  body; }
 
     public String getFood() { return food;}
 

@@ -287,6 +287,7 @@
 
                     <LinearLayout
                         android:id="@+id/layout8"
+                        android:layout_marginTop="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -310,7 +311,40 @@
                             android:textColor="#708090"
                             android:textSize="18dp" />
 
+
+
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_body"
+                        android:layout_marginTop="6dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_body"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/printable4u"
+                            android:text="สภาพร่างกาย:"
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
+
+
+                        <TextView
+                            android:id="@+id/body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/printable4u"
+                            android:text="หยิน หรือ หยาง"
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
