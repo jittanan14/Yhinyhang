@@ -12,10 +12,11 @@ import java.util.ArrayList;
 public class Question extends AppCompatActivity {
 
     ArrayList<String> question;
-    ArrayList<Integer> answer;
+    int [] answer;
     TextView Text_question ;
     Button button_next ;
     Button button_previous;
+    Button button_confirmall;
     RadioButton radioButton1;
     RadioButton radioButton2;
     RadioButton radioButton3;
@@ -37,6 +38,7 @@ public class Question extends AppCompatActivity {
         Text_question = findViewById(R.id.Text_question);
         button_next = findViewById(R.id.button_next_question);
         button_previous = findViewById(R.id.button_previous_question);
+        button_confirmall = findViewById(R.id.button_confirmall);
         radioButton1 = findViewById(R.id.radioButton1);
         radioButton2 = findViewById(R.id.radioButton2);
         radioButton3 = findViewById(R.id.radioButton3);
@@ -57,8 +59,10 @@ public class Question extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(checkPoint() != 0) {
-                    updateQuestion();
-                    updateAnswer();
+                    if(index < question.size()) {
+                        updateQuestion();
+//                        updateAnswer();
+                    }
                 } else {
                     Toast.makeText(Question.this, "กรุณาเลือกระดับคะแนน", Toast.LENGTH_SHORT).show();
                 }
@@ -68,15 +72,31 @@ public class Question extends AppCompatActivity {
         button_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkPoint() != 0) {
-                   backward_question();
+                if(checkPoint() != 0 ) {
+
+                        backward_question();
+
                 } else {
                     Toast.makeText(Question.this, "กรุณาเลือกระดับคะแนน", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        button_confirmall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Double score = CalculatetoScore_yhinyhang();
+                if(checkPoint() != 0){
+                    Toast.makeText(Question.this,"คะแนน",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Question.this, "กรุณาเลือกระดับคะแนน", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
     }
+
 
     public void updateQuestion() {
         index++;
@@ -84,50 +104,56 @@ public class Question extends AppCompatActivity {
 
         if (index != 1){
             button_previous.setVisibility(View.VISIBLE);
+            button_confirmall.setVisibility(View.GONE);
+
+
         }
         if (index == 21) {
             button_next.setVisibility(View.GONE);
+            button_confirmall.setVisibility(View.VISIBLE);
         }
 
-        answer.add(checkPoint());
+
+
+        answer[index]=(checkPoint());
+        Log.e("updateAnswer", String.valueOf(answer[index]));
 
         Log.e("QQ", Integer.toString(checkPoint()));
-
-        Log.e("QQ2", String.valueOf(radioButton1.isChecked()));
-
-
-
-
-
-
     }
 
     public void updateAnswer() {
         for(int i=1; i<radioAnswer.length; i++) {
             radioAnswer[i].setChecked(false);
+
         }
     }
 
     public void backward_question(){
-        index--;
+        if (index != 1){
+            index--;
+        }
+
+        Log.e("Index", Integer.toString(index));
         Text_question.setText(index+". "+question.get(index));
         if (index == 1 ){
             button_previous.setVisibility(View.GONE);
+            button_confirmall.setVisibility(View.GONE);
+
         }else {
             button_next.setVisibility(View.VISIBLE);
+            button_confirmall.setVisibility(View.GONE);
         }
 
-        radioAnswer[answer.get(index)].setChecked(true);
+        Log.e("AnswerIndex: ", String.valueOf(answer[index]));
+
+//        radioAnswer[answer[index]].setChecked(true);
 
     }
 
 
     public void setQuestion(){
         question = new ArrayList<>();
-        answer = new ArrayList<>();
-
         question.add(" ");
-        answer.add(0);
 
         //yhin
         question.add("คุณมีอาการหน้าซีดระดับใด ?");
@@ -154,31 +180,49 @@ public class Question extends AppCompatActivity {
         question.add("ฝ่ามือและฝ่าเท้าของคุณเย็นง่ายระดับใด ?");
         question.add("คุณปัสสาวะบ่อยตอนกลางคืนระดับใด ?");
 
+        answer = new int[question.size()];
+        answer[0]=0;
 
         Text_question.setText(index + ". " + question.get(1));
         button_previous.setVisibility(View.GONE);
+        button_confirmall.setVisibility(View.GONE);
     }
 
     public int checkPoint() {
-//        if(radioButton1.isChecked()) {
-//            return 1;
-//        } else if(radioButton2.isChecked()){
-//            return 2;
-//        } else if (radioButton3.isChecked()){
-//            return 3;
-//        } else if (radioButton4.isChecked()) {
-//            return 4;
-//        } else {
-//            return 5;
-//        }
-
         for(int i=1; i<radioAnswer.length; i++) {
             if (radioAnswer[i].isChecked()) {
-                Log.e("eiei"+Integer.toString(i), Integer.toString(i));
+                 Log.e("eiei"+Integer.toString(i), Integer.toString(i));
                 return i;
             }
         }
         return 0;
+    }
+
+    public Double CalculatetoScore_yhinyhang(){
+        int score = checkPoint();
+        int index = checkPoint();
+        int sum=0;
+        double score_yhin=0 ;
+        double score_yhang = 0;
+        int check = 0;
+
+        if(index>= 1 && index <=13 && check ==1){
+            sum += score ;
+            check =1;
+
+        }if (index>=14 && index <=21 && check == 2) {
+            sum += score ;
+            check = 2;
+        }
+
+        if (check == 1) {
+            return score_yhin = sum/13;
+
+        }
+        if (check == 2){
+            return score_yhang = sum/8;
+        }
+        return 0.0;
     }
 
 }

@@ -12,6 +12,7 @@
         android:id="@+id/yhin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/yhinyhang"
             android:layout_width="match_parent"
@@ -28,18 +29,17 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_below="@+id/yhin"
-        android:layout_marginTop="10dp"
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/yhin"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/bg_white"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <EditText
             android:id="@+id/TextEmail_login"
@@ -47,10 +47,9 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="5dp"
-            android:hint="email"
-            android:inputType="textEmailAddress"
             android:fontFamily="@font/printable4u"
-            />
+            android:hint="email"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/TextPassword_login"
@@ -69,30 +68,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout1"
-        android:layout_centerHorizontal="true"
-        >
+        android:layout_centerHorizontal="true">
+
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70px"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="70px"
             android:layout_marginRight="5dp"
             android:background="@drawable/bg_white"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_centerHorizontal="true"
-            >
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/signin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/printable4u"
-                android:textStyle="bold"
-                android:textSize="40px"
-                android:text="Sign in"
                 android:gravity="center"
+                android:text="Sign in"
+                android:textSize="40px"
+                android:textStyle="bold"
 
                 />
 
@@ -102,26 +100,25 @@
             android:id="@+id/layout4"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70px"
             android:layout_below="@+id/layout1"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="70px"
             android:layout_marginRight="20dp"
             android:background="@drawable/bg_white"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_centerHorizontal="true"
-            >
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/printable4u"
-                android:textStyle="bold"
-                android:textSize="40px"
-                android:text="Sign up"
                 android:gravity="center"
+                android:text="Sign up"
+                android:textSize="40px"
+                android:textStyle="bold"
 
                 />
 

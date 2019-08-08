@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@drawable/bg_main"
+    android:background="#D3D3D3"
     >
 
     <android.support.v7.widget.Toolbar
@@ -21,7 +21,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ic_logout" />
+            android:background="@drawable/ic_logout"
+            />
 
         <TextView
             android:id="@+id/text_create"
@@ -36,23 +37,61 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        >
-
-
-    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@null"
+        android:background="@drawable/gradient_bg2"
         app:itemBackground="@null"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottom_navigation" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/food"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cutlery"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/magnifier"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+                />
+        <ImageView
+            android:id="@+id/graph"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/loss" />
+
+            <ImageView
+                android:id="@+id/profile_user"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/user" />
+        </LinearLayout>
+
+
+        </android.support.design.widget.BottomNavigationView>
 
 
 </RelativeLayout>

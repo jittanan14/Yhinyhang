@@ -115,11 +115,10 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 String food = food_edit.getText().toString();
                 String picture = link_image;
 
+//                Intent openlogin = new Intent(Register.this, Question.class);
+//                startActivity(openlogin);
+//                finish();
 
-
-                Intent openlogin = new Intent(Register.this, Question.class);
-                           startActivity(openlogin);
-                            finish();
                 Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,body,food, picture);
                 call.enqueue(new Callback<DefaultResponse>() {
                     @Override

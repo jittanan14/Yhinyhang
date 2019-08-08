@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 import com.example.jittanan.yhinyhang.api.RetrofitClient;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     RetrofitClient retro;
     EditText text_email ;
     EditText pass_word ;
-
+    ImageView profile_user;
     SharedPreferences sp;
     SharedPreferences.Editor edit;
     String PREF_NAME="Log in";
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         logout = findViewById(R.id.button_logout);
+        profile_user = findViewById(R.id.profile_user);
 
         sp = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         edit = sp.edit();
@@ -50,7 +52,17 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        profile_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ProfileUser.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
 
 }
 
