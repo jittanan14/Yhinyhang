@@ -1,53 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ProfileUser">
+    tools:context=".Fragments.Fragment_profile">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@drawable/gradient_bg2"
-        android:baselineAligned="false">
+    <!-- TODO: Update blank fragment layout -->
 
-        <TextView
-            android:id="@+id/text_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/printable4u"
-            android:text="โปรไฟล์ของฉัน"
-            android:textColor="#708090"
-            android:textSize="20sp" />
-
-    </android.support.v7.widget.Toolbar>
-
-    <ScrollView
-        android:id="@+id/scrollable"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar2"
-       >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/layout_all"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar2"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="20dp"
+
             android:paddingRight="20dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_profile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="60dp"
                 android:src="@drawable/user" />
 
             <LinearLayout
@@ -120,6 +98,45 @@
                     android:text="วัตถุดิบอาหารที่แพ้ :"
                     android:textSize="18dp" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_dataprofile2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_all"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_cancel"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/printable4u"
+                    android:gravity="center_horizontal"
+                    android:text="แก้ไขข้อมูลส่วนตัว"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_dataprofile3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_all"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/gradient_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
                 <TextView
                     android:id="@+id/body_user"
                     android:layout_width="match_parent"
@@ -169,64 +186,48 @@
 
                     />
 
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/printable4u"
+                    android:text="อาหารที่ฉันถูกใจ :"
+                    android:textSize="18dp"
+
+                    />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/printable4u"
+                    android:text="อาหารที่ฉันถูกใจ :"
+                    android:textSize="18dp"
+
+                    />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/printable4u"
+                    android:text="อาหารที่ฉันถูกใจ :"
+                    android:textSize="18dp"
+
+                    />
+
+
             </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+</ScrollView>
 
+</FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/gradient_bg2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <ImageView
-                android:id="@+id/food_comment"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/cutlery" />
-
-            <ImageView
-                android:id="@+id/search"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/magnifier" />
-
-            <ImageView
-                android:id="@+id/graph"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/loss" />
-
-            <ImageView
-                android:id="@+id/profile_user"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/user" />
-
-
-        </LinearLayout>
-
-    </android.support.design.widget.BottomNavigationView>
-
-</RelativeLayout>

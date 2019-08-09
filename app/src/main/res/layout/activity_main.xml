@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
     android:background="#D3D3D3"
-    >
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -16,14 +16,6 @@
         android:background="@drawable/gradient_bg2"
         android:baselineAligned="false">
 
-        <Button
-            android:id="@+id/button_logout"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_logout"
-            />
-
         <TextView
             android:id="@+id/text_create"
             android:layout_width="wrap_content"
@@ -31,12 +23,25 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/printable4u"
-            android:text="Home"
+            android:text="รายการอาหารที่แนะนำ"
             android:textColor="#708090"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_exit_to_app_black_24dp"/>
+
     </android.support.v7.widget.Toolbar>
 
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/relative1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -45,53 +50,8 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/gradient_bg2"
         app:itemBackground="@null"
-        app:menu="@menu/bottom_navigation" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-        <ImageView
-            android:id="@+id/food"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/cutlery"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="10dp"
-            />
-
-        <ImageView
-            android:id="@+id/search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/magnifier"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-                />
-        <ImageView
-            android:id="@+id/graph"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/loss" />
-
-            <ImageView
-                android:id="@+id/profile_user"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/user" />
-        </LinearLayout>
-
-
-        </android.support.design.widget.BottomNavigationView>
-
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

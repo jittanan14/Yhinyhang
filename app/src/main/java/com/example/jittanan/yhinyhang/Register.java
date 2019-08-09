@@ -193,7 +193,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
-        //Select photo profile
+        //Select photo Fragment_profile
         ImageView upload = findViewById(R.id.user);
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -339,7 +339,7 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
 //                        Bundle bundle = data.getExtras();
 //                        Bitmap bitmap = bundle.getParcelable("data");
 ////                        image_user = imageToString(bitmap);
-//                        profile.setImageBitmap(bitmap);
+//                        Fragment_profile.setImageBitmap(bitmap);
 
                         break;
                     } else if (resultCode == Activity.RESULT_CANCELED) {
