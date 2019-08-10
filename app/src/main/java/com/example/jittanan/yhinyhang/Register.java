@@ -105,6 +105,8 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
         okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String email = Text_Email.getEditText().getText().toString();
                 String pass_word = Pass_word.getEditText().getText().toString();
                 String username = name_edit.getText().toString();
@@ -115,9 +117,9 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 String food = food_edit.getText().toString();
                 String picture = link_image;
 
-//                Intent openlogin = new Intent(Register.this, Question.class);
-//                startActivity(openlogin);
-//                finish();
+                Intent openlogin = new Intent(Register.this, Question.class);
+                startActivity(openlogin);
+                finish();
 
                 Call<DefaultResponse> call = retro.getApi().createUser(email, pass_word, username,gender,birthday,element,body,food, picture);
                 call.enqueue(new Callback<DefaultResponse>() {
@@ -181,11 +183,12 @@ public class Register extends AppCompatActivity implements DatePickerDialog.OnDa
                 } else if (!PASSWORD_PATTERN.matcher(s.toString()).matches()) {
                     Pass_word.setError("รหัสผ่านมีความยาวน้อยกว่า 6 ตัวอักษร");
                     Pass_word.requestFocus();
-                } else {
+                }else {
                     Pass_word.setError(null);
                 }
+                }
 
-            }
+
         });
 
 

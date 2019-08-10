@@ -44,40 +44,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:src="@drawable/user" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/TextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/gradient_bg"
-                app:errorEnabled="true"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/gradient_bg"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="100"
-                >
+                app:errorEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:hint="อีเมล"
-                    android:fontFamily="@font/printable4u"
                     android:drawableLeft="@drawable/ic_email2"
                     android:drawablePadding="5dp"
+                    android:fontFamily="@font/printable4u"
+                    android:hint="อีเมล"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="#708090"
 
                     />
@@ -287,9 +286,9 @@
 
                     <LinearLayout
                         android:id="@+id/layout8"
-                        android:layout_marginTop="6dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -312,14 +311,13 @@
                             android:textSize="18dp" />
 
 
-
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/layout_body"
-                        android:layout_marginTop="6dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp">
 
                         <TextView
 
@@ -340,6 +338,44 @@
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/printable4u"
                             android:text="หยิน หรือ หยาง"
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_num_yhin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp">
+
+                        <TextView
+                            android:id="@+id/num_yhin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_yin"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/printable4u"
+                            android:text="ค่าหยิน : "
+                            android:textColor="#708090"
+                            android:textSize="18dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_num_yhang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="6dp">
+
+                        <TextView
+                            android:id="@+id/num_yhang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_yang"
+                            android:drawablePadding="5dp"
+                            android:fontFamily="@font/printable4u"
+                            android:text="ค่าหยาง : "
                             android:textColor="#708090"
                             android:textSize="18dp" />
 
@@ -381,22 +417,22 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout9"
                 android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_gravity="center_horizontal">
+                android:padding="10dp">
 
-                    <Button
-                        android:id="@+id/ok"
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_ok"
-                        android:fontFamily="@font/printable4u"
-                        android:text="ยืนยัน"
-                        android:textColor="#708090"
-                        android:textSize="25dp" />
+                <Button
+                    android:id="@+id/ok"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_ok"
+                    android:fontFamily="@font/printable4u"
+                    android:text="สมัครสมาชิก"
+                    android:textColor="#708090"
+                    android:textSize="25dp" />
 
             </LinearLayout>
 

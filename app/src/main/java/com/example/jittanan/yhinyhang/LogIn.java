@@ -76,28 +76,29 @@ public class LogIn extends AppCompatActivity {
         final String password = pass_word.getText().toString().trim();
 
         if (email.isEmpty()) {
-            text_email.setError("Email is required");
+            text_email.setError("กรุณากรอกอีเมล");
+            pass_word.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            pass_word.setError("กรุณากรอกรหัสผ่าน");
             pass_word.requestFocus();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            text_email.setError("Enter a valid email");
+            text_email.setError("รูปแบบอีเมลไม่ถูกต้อง");
             text_email.requestFocus();
             return;
         }
 
-        if (password.isEmpty()) {
-            pass_word.setError("Password required");
+        if (password.length() < 6) {
+            pass_word.setError("รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัว");
             pass_word.requestFocus();
             return;
         }
 
-        if (password.length() < 6) {
-            pass_word.setError("Password should be atleast 6 character long");
-            pass_word.requestFocus();
-            return;
-        }
 
         Call<LoginResponse> call = retro.getApi().userLogin(email, password);
         call.enqueue(new Callback<LoginResponse>() {

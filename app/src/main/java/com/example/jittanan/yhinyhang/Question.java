@@ -1,31 +1,37 @@
 package com.example.jittanan.yhinyhang;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 
-public class Question extends AppCompatActivity {
+public class Question extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<String> question;
-    int [] answer;
-    TextView Text_question ;
-    Button button_next ;
+    ArrayList<String> questionArray;
+    TextView Text_question;
+    Button button_next;
     Button button_previous;
     Button button_confirmall;
-    RadioButton radioButton1;
-    RadioButton radioButton2;
-    RadioButton radioButton3;
-    RadioButton radioButton4;
-    RadioButton radioButton5;
-    RadioButton[] radioAnswer;
-
-
+    RadioButton radioButton;
+    RadioGroup radioGroup;
+    private int Score[];
+    int yhin;
+    int yhang;
+    double sum_yhin  =0;
+    double sum_yhang = 0;
     int index = 1;
+    double max = Double.MIN_VALUE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,196 +39,267 @@ public class Question extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         getSupportActionBar().hide();
 
-
-
         Text_question = findViewById(R.id.Text_question);
         button_next = findViewById(R.id.button_next_question);
+        button_next.setOnClickListener(this);
         button_previous = findViewById(R.id.button_previous_question);
+        button_previous.setOnClickListener(this);
         button_confirmall = findViewById(R.id.button_confirmall);
-        radioButton1 = findViewById(R.id.radioButton1);
-        radioButton2 = findViewById(R.id.radioButton2);
-        radioButton3 = findViewById(R.id.radioButton3);
-        radioButton4 = findViewById(R.id.radioButton4);
-        radioButton5 = findViewById(R.id.radioButton5);
-
-        radioAnswer = new RadioButton[6];
-        radioAnswer[0] = null;
-        radioAnswer[1] = radioButton1;
-        radioAnswer[2] = radioButton2;
-        radioAnswer[3] = radioButton3;
-        radioAnswer[4] = radioButton4;
-        radioAnswer[5] = radioButton5;
+        button_confirmall.setOnClickListener(this);
+        radioGroup = findViewById(R.id.radio_answer);
 
         setQuestion();
-
-        button_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(checkPoint() != 0) {
-                    if(index < question.size()) {
-                        updateQuestion();
-//                        updateAnswer();
-                    }
-                } else {
-                    Toast.makeText(Question.this, "กรุณาเลือกระดับคะแนน", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        button_previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(checkPoint() != 0 ) {
-
-                        backward_question();
-
-                } else {
-                    Toast.makeText(Question.this, "กรุณาเลือกระดับคะแนน", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        button_confirmall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Double score = CalculatetoScore_yhinyhang();
-                if(checkPoint() != 0){
-                    Toast.makeText(Question.this,"คะแนน",Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(Question.this, "กรุณาเลือกระดับคะแนน", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
     }
 
-
-    public void updateQuestion() {
-        index++;
-        Text_question.setText(index+". "+question.get(index));
-
-        if (index != 1){
-            button_previous.setVisibility(View.VISIBLE);
-            button_confirmall.setVisibility(View.GONE);
-
-
-        }
-        if (index == 21) {
-            button_next.setVisibility(View.GONE);
-            button_confirmall.setVisibility(View.VISIBLE);
-        }
-
-
-
-        answer[index]=(checkPoint());
-        Log.e("updateAnswer", String.valueOf(answer[index]));
-
-        Log.e("QQ", Integer.toString(checkPoint()));
-    }
-
-    public void updateAnswer() {
-        for(int i=1; i<radioAnswer.length; i++) {
-            radioAnswer[i].setChecked(false);
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button_previous_question:
+                backQuestion();
+                break;
+            case R.id.button_next_question:
+                nextQuestion();
+                break;
+            case R.id.button_confirmall :
+                confirmAll();
+                break;
         }
     }
 
-    public void backward_question(){
-        if (index != 1){
+    private void backQuestion() {
+        if (index != 1)
             index--;
+
+        Text_question.setText(index + ". " + questionArray.get(index));
+
+        setAnswer(Score[index]);
+
+        if (index == 1) {
+            setButton(0);
+        } else {
+            setButton(2);
+        }
+    }
+
+    private void nextQuestion() {
+        if (index < questionArray.size() - 1)
+            index++;
+
+        Text_question.setText(index + ". " + questionArray.get(index));
+
+        int score = Score[index];
+        if (index == questionArray.size() - 1) {
+            if (score > 0) {
+                setAnswer(score);
+                setButton(4);
+            } else {
+                setButton(3);
+                radioGroup.clearCheck();
+            }
+        } else {
+            if (score > 0) {
+                setAnswer(score);
+                setButton(2);
+            } else {
+                setButton(1);
+                radioGroup.clearCheck();
+            }
+        }
+    }
+
+    private void setAnswer(int score) {
+        switch (score) {
+            case 1:
+                radioButton = findViewById(R.id.radioButton1);
+                radioButton.setChecked(true);
+                break;
+            case 2:
+                radioButton = findViewById(R.id.radioButton2);
+                radioButton.setChecked(true);
+                break;
+            case 3:
+                radioButton = findViewById(R.id.radioButton3);
+                radioButton.setChecked(true);
+                break;
+            case 4:
+                radioButton = findViewById(R.id.radioButton4);
+                radioButton.setChecked(true);
+                break;
+            case 5:
+                radioButton = findViewById(R.id.radioButton5);
+                radioButton.setChecked(true);
+                break;
         }
 
-        Log.e("Index", Integer.toString(index));
-        Text_question.setText(index+". "+question.get(index));
-        if (index == 1 ){
-            button_previous.setVisibility(View.GONE);
-            button_confirmall.setVisibility(View.GONE);
+        Log.e("Set Answer Score", String.valueOf(score));
+    }
 
-        }else {
-            button_next.setVisibility(View.VISIBLE);
-            button_confirmall.setVisibility(View.GONE);
+    private void setButton(int number) {
+
+        /* Set Button
+        0 >> first question have answer
+        1 >> back&next question not have answer
+        2 >> back&next question have answer
+        3 >> last question not have answer
+        4 >> last question have answer
+        */
+
+        switch (number) {
+            case 0:
+                button_previous.setVisibility(View.GONE);
+                button_next.setEnabled(true);
+                break;
+            case 1:
+                button_previous.setVisibility(View.VISIBLE);
+                button_next.setVisibility(View.VISIBLE);
+                button_next.setEnabled(false);
+                button_confirmall.setVisibility(View.GONE);
+                break;
+            case 2:
+                button_previous.setVisibility(View.VISIBLE);
+                button_next.setVisibility(View.VISIBLE);
+                button_next.setEnabled(true);
+                button_confirmall.setVisibility(View.GONE);
+                break;
+            case 3:
+                button_previous.setVisibility(View.VISIBLE);
+                button_next.setVisibility(View.GONE);
+                button_confirmall.setVisibility(View.VISIBLE);
+                button_confirmall.setEnabled(false);
+                break;
+            case 4:
+                button_next.setVisibility(View.GONE);
+                button_confirmall.setVisibility(View.VISIBLE);
+                button_confirmall.setEnabled(true);
+                break;
+        }
+    }
+
+
+    public void checkButton(View v) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
+
+        int score = Integer.parseInt(radioButton.getText().toString());
+        Score[index] = score;
+
+
+        if (index == questionArray.size() - 1) {
+            button_confirmall.setEnabled(true);
+        }
+        else {
+            button_next.setEnabled(true);
         }
 
-        Log.e("AnswerIndex: ", String.valueOf(answer[index]));
 
-//        radioAnswer[answer[index]].setChecked(true);
+
+        Toast.makeText(this, Integer.toString(score), Toast.LENGTH_SHORT).show();
+
 
     }
 
 
-    public void setQuestion(){
-        question = new ArrayList<>();
-        question.add(" ");
+    public void setQuestion() {
+        questionArray = new ArrayList<>();
+        questionArray.add(" ");
 
         //yhin
-        question.add("คุณมีอาการหน้าซีดระดับใด ?");
-        question.add("คุณหายใจเบาระดับใด ?");
-        question.add("คุณขี้หนาวระดับใด ?");
-        question.add("คุณรู้สึกไม่ค่อยมีแรงระดับใด ?");
-        question.add("คุณอุจจาระน้อยและค่อนข้างเหลวระดับใด?");
-        question.add("คุณปัสสาวะมาก ระดับใด ?");
-        question.add("คุณรู้สึกท้องอืดระดับใด ?");
-        question.add("คุณร้อนใน ระดับใด ?");
-        question.add("คุณปากแห้งระดับใด ?");
-        question.add("คุณคอแห้งระดับใด ?");
-        question.add("คุณข้ีหงุดหงิดระดับใด ?");
-        question.add("คุณผิวแห้งระดับใด ?");
-        question.add("คุณฝ่ามือและฝ่าเท้าร้อนระดับใด ?");
+        questionArray.add("คุณมีอาการหน้าซีดระดับใด ?");
+        questionArray.add("คุณหายใจเบาระดับใด ?");
+        questionArray.add("คุณขี้หนาวระดับใด ?");
+        questionArray.add("คุณรู้สึกไม่ค่อยมีแรงระดับใด ?");
+        questionArray.add("คุณอุจจาระน้อยและค่อนข้างเหลวระดับใด?");
+        questionArray.add("คุณปัสสาวะมาก ระดับใด ?");
+        questionArray.add("คุณรู้สึกท้องอืดระดับใด ?");
+        questionArray.add("คุณร้อนใน ระดับใด ?");
+        questionArray.add("คุณปากแห้งระดับใด ?");
+        questionArray.add("คุณคอแห้งระดับใด ?");
+        questionArray.add("คุณข้ีหงุดหงิดระดับใด ?");
+        questionArray.add("คุณผิวแห้งระดับใด ?");
+        questionArray.add("คุณฝ่ามือและฝ่าเท้าร้อนระดับใด ?");
 
         //yhang
-        question.add("คุณหน้าแดงระดับใด ?");
-        question.add("คุณหายใจแรงระดับใด ?");
-        question.add("คุณรู้สึกตัวร้อนระดับใด?");
-        question.add("คุณชอบด่ืมนํ้าเย็นระดับใด?");
-        question.add("คุณท้องผูกระดับใด ?");
-        question.add("คุณปัสสาวะเหลืองเข้มระดับใด ?");
-        question.add("ฝ่ามือและฝ่าเท้าของคุณเย็นง่ายระดับใด ?");
-        question.add("คุณปัสสาวะบ่อยตอนกลางคืนระดับใด ?");
+        questionArray.add("คุณหน้าแดงระดับใด ?");
+        questionArray.add("คุณหายใจแรงระดับใด ?");
+        questionArray.add("คุณรู้สึกตัวร้อนระดับใด?");
+        questionArray.add("คุณชอบด่ืมนํ้าเย็นระดับใด?");
+        questionArray.add("คุณท้องผูกระดับใด ?");
+        questionArray.add("คุณปัสสาวะเหลืองเข้มระดับใด ?");
+        questionArray.add("ฝ่ามือและฝ่าเท้าของคุณเย็นง่ายระดับใด ?");
+        questionArray.add("คุณปัสสาวะบ่อยตอนกลางคืนระดับใด ?");
 
-        answer = new int[question.size()];
-        answer[0]=0;
+        Score = new int[questionArray.size()];
 
-        Text_question.setText(index + ". " + question.get(1));
+
+        Text_question.setText(index + ". " + questionArray.get(1));
         button_previous.setVisibility(View.GONE);
         button_confirmall.setVisibility(View.GONE);
     }
 
-    public int checkPoint() {
-        for(int i=1; i<radioAnswer.length; i++) {
-            if (radioAnswer[i].isChecked()) {
-                 Log.e("eiei"+Integer.toString(i), Integer.toString(i));
-                return i;
+    private void confirmAll() {
+
+        CalculateNumyhinyhang();
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Question.this, R.style.AlertDialogCustom);
+
+       //เหลือกรณีเท่ากับจะให้เป็นตามที่คำนวณวันเกิดเลย
+        int c = 0;
+        if (sum_yhin > sum_yhang){
+            max = sum_yhin;
+            c=1;
+        }else if (sum_yhang > sum_yhin) {
+            max = sum_yhang;
+            c=2;
+        }
+
+        String s1 = String.format("%.2f",sum_yhin);
+        String s2 = String.format("%.2f",sum_yhang);
+        builder.setTitle("ระดับคะแนน");
+        if (c==1) {
+            //set message
+            builder.setMessage("หยินของคุณคือ " + s1 + "\nหยางของคุณคือ " + s2+"\n\nร่างกายของคุณมีความเป็นหยินมากกว่า");
+            builder.setIcon(R.drawable.ic_yin);
+        }
+        else if (c==2){
+            builder.setMessage("หยินของคุณคือ " + s1 + "\nหยางของคุณคือ " + s2+"\n\nร่างกายของคุณมีความเป็นหยางมากกว่า");
+            builder.setIcon(R.drawable.ic_yang);
+        }
+        //set cancelable
+        builder.setCancelable(true);
+        //set positive / yes button
+        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
             }
-        }
-        return 0;
+        });
+
+        //create alert dialog
+        AlertDialog alertdialog = builder.create();
+        //show alert dialog
+        alertdialog.show();
+
     }
 
-    public Double CalculatetoScore_yhinyhang(){
-        int score = checkPoint();
-        int index = checkPoint();
-        int sum=0;
-        double score_yhin=0 ;
-        double score_yhang = 0;
-        int check = 0;
+    public void CalculateNumyhinyhang(){
 
-        if(index>= 1 && index <=13 && check ==1){
-            sum += score ;
-            check =1;
+        for(int i = 1; i<=Score.length; i++){
 
-        }if (index>=14 && index <=21 && check == 2) {
-            sum += score ;
-            check = 2;
-        }
-
-        if (check == 1) {
-            return score_yhin = sum/13;
+            if(i>=1 && i<=13 ){
+                sum_yhin += Score[i];
+            }
+            else if (i>=14 && i<=21) {
+                sum_yhang += Score[i];
+            }
 
         }
-        if (check == 2){
-            return score_yhang = sum/8;
-        }
-        return 0.0;
+
+        sum_yhin = sum_yhin/13;
+        sum_yhang = sum_yhang/8;
+
+
     }
+
 
 }
