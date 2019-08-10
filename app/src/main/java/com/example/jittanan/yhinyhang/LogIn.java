@@ -18,7 +18,6 @@ public class LogIn extends AppCompatActivity {
     RetrofitClient retro;
     EditText text_email ;
     EditText pass_word ;
-
     SharedPreferences sp;
     SharedPreferences.Editor edit ;
     String PREF_NAME="Log in";
@@ -35,8 +34,6 @@ public class LogIn extends AppCompatActivity {
 
         text_email = findViewById(R.id.TextEmail_login);
         pass_word = findViewById(R.id.TextPassword_login);
-
-
 
         getSupportActionBar().hide();
         View decorView = getWindow().getDecorView();
@@ -109,11 +106,15 @@ public class LogIn extends AppCompatActivity {
                     System.out.println(response.body().getMessages());
                     System.out.println(response.body().getUser().getEmail());
                     Toast.makeText(LogIn.this, response.body().getMessages(), Toast.LENGTH_LONG).show();
+                 
+                      startActivity(new Intent(LogIn.this, Question.class));
+
+
+
 
                     edit.putBoolean("check_login",true);
                     edit.commit();
 
-                    startActivity(new Intent(LogIn.this, MainActivity.class));
 
 
                 } else {

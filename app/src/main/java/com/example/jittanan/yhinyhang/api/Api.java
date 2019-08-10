@@ -19,9 +19,12 @@ public interface Api {
             @Field("gender_user") String gender_user,
             @Field("Birth_user") String Birth_user,
             @Field("element_user") String element_user,
-            @Field("body_user") String body_user,
             @Field("food_user") String food_user,
-            @Field("Pic_user") String Pic_user
+            @Field("Pic_user") String Pic_user,
+            @Field("body_user") String body_user,
+            @Field("num_yhin") double num_yhin,
+            @Field("num_yhang") double num_yhang
+
     );
 
     @FormUrlEncoded

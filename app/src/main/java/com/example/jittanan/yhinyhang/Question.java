@@ -2,7 +2,6 @@ package com.example.jittanan.yhinyhang;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +13,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import java.util.ArrayList;
 
 public class Question extends AppCompatActivity implements View.OnClickListener {
@@ -23,8 +24,11 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
     Button button_next;
     Button button_previous;
     Button button_confirmall;
+    Button button_back_login;
     RadioButton radioButton;
     RadioGroup radioGroup;
+
+
     private int Score[];
     int yhin;
     int yhang;
@@ -46,7 +50,10 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         button_previous.setOnClickListener(this);
         button_confirmall = findViewById(R.id.button_confirmall);
         button_confirmall.setOnClickListener(this);
+        button_back_login = findViewById(R.id.button_back_login);
+        button_back_login.setOnClickListener(this);
         radioGroup = findViewById(R.id.radio_answer);
+
 
         setQuestion();
     }
@@ -63,6 +70,9 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
             case R.id.button_confirmall :
                 confirmAll();
                 break;
+            case R.id.button_back_login :
+                Intent intent = new Intent(Question.this,LogIn.class);
+                startActivity(intent);
         }
     }
 
@@ -253,8 +263,10 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
             c=2;
         }
 
+
         String s1 = String.format("%.2f",sum_yhin);
         String s2 = String.format("%.2f",sum_yhang);
+
         builder.setTitle("ระดับคะแนน");
         if (c==1) {
             //set message
@@ -268,10 +280,13 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         //set cancelable
         builder.setCancelable(true);
         //set positive / yes button
+
         builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+                Intent intent = new Intent(Question.this,MainActivity.class);
+                startActivity(intent);
+
             }
         });
 
@@ -279,6 +294,7 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         AlertDialog alertdialog = builder.create();
         //show alert dialog
         alertdialog.show();
+
 
     }
 

@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -32,16 +38,11 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ic_exit_to_app_black_24dp"/>
+            android:background="@drawable/ic_exit_to_app_black_24dp" />
 
     </android.support.v7.widget.Toolbar>
 
-    <FrameLayout
-        android:id="@+id/frame_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/relative1"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"

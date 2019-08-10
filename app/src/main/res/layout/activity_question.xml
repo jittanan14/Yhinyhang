@@ -16,7 +16,7 @@
         android:baselineAligned="false" />
 
     <Button
-        android:id="@+id/button_back_profile"
+        android:id="@+id/button_back_login"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="20dp"

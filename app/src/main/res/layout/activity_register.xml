@@ -337,49 +337,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:fontFamily="@font/printable4u"
-                            android:text="หยิน หรือ หยาง"
+                            android:hint="หยิน หรือ หยาง"
                             android:textColor="#708090"
                             android:textSize="18dp" />
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/layout_num_yhin"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp">
 
-                        <TextView
-                            android:id="@+id/num_yhin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_yin"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/printable4u"
-                            android:text="ค่าหยิน : "
-                            android:textColor="#708090"
-                            android:textSize="18dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layout_num_yhang"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="6dp">
-
-                        <TextView
-                            android:id="@+id/num_yhang"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_yang"
-                            android:drawablePadding="5dp"
-                            android:fontFamily="@font/printable4u"
-                            android:text="ค่าหยาง : "
-                            android:textColor="#708090"
-                            android:textSize="18dp" />
-
-                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -425,7 +389,7 @@
                 android:padding="10dp">
 
                 <Button
-                    android:id="@+id/ok"
+                    android:id="@+id/submit_button"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_ok"

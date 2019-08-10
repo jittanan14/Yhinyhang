@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,8 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-
+import android.widget.TextView;
+import android.widget.Toolbar;
 import com.example.jittanan.yhinyhang.Fragments.Fragment_foodcomment;
 import com.example.jittanan.yhinyhang.Fragments.Fragment_graph;
 import com.example.jittanan.yhinyhang.Fragments.Fragment_profile;
@@ -30,21 +31,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     SharedPreferences sp;
     SharedPreferences.Editor edit;
     String PREF_NAME="Log in";
-
+    TextView text_create;
+    ActionBar toolbar;
     Button logout ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        toolbar = getSupportActionBar();
+
         logout = findViewById(R.id.button_logout);
-
-
+        text_create = findViewById(R.id.text_create);
+        logout = findViewById(R.id.button_logout);
         sp = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         edit = sp.edit();
 
+        logout.setVisibility(View.GONE);
 
         if(!sp.getBoolean("check_login", false)){
             startActivity(new Intent(MainActivity.this, LogIn.class));
@@ -95,19 +100,30 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         }
 
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.food_comment : loadFragment(new Fragment_foodcomment());
+            case R.id.food_comment :
+                text_create.setText("รายการอาหารที่แนะนำ");
+                loadFragment(new Fragment_foodcomment());
+                logout.setVisibility(View.GONE);
                 return true;
-            case R.id.search : loadFragment(new Fragment_search());
+            case R.id.search :
+                text_create.setText("ค้นหาเมนูอาหาร");
+                loadFragment(new Fragment_search());
+                logout.setVisibility(View.GONE);
                 return true;
-            case R.id.graph : loadFragment(new Fragment_graph());
+            case R.id.graph :
+                text_create.setText("ประวัติการรับประทานอาหาร");
+                loadFragment(new Fragment_graph());
+                logout.setVisibility(View.GONE);
                 return true;
-            case R.id.profile : loadFragment(new Fragment_profile());
+            case R.id.profile :
+                text_create.setText("โปรไฟล์ของฉัน");
+                loadFragment(new Fragment_profile());
+                logout.setVisibility(View.VISIBLE);
                 return true;
         }
 
