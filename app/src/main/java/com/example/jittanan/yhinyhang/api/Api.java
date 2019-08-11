@@ -24,7 +24,6 @@ public interface Api {
             @Field("body_user") String body_user,
             @Field("num_yhin") double num_yhin,
             @Field("num_yhang") double num_yhang
-
     );
 
     @FormUrlEncoded
@@ -32,5 +31,13 @@ public interface Api {
     Call<LoginResponse> userLogin(
             @Field("email_user") String email,
             @Field("pass_user") String password
+    );
+
+    @FormUrlEncoded
+    @POST("update_yhinyhang.php")
+    Call<DefaultResponse> updateYhinYhang (
+            @Field("num_yhin") double num_yhin,
+            @Field("num_yhang") double num_yhang,
+            @Field("email_user") String email
     );
 }

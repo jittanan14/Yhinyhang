@@ -2,6 +2,7 @@ package com.example.jittanan.yhinyhang;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,8 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.jittanan.yhinyhang.api.RetrofitClient;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Question extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,7 +33,10 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
     Button button_back_login;
     RadioButton radioButton;
     RadioGroup radioGroup;
-
+    RetrofitClient retro ;
+    String email;
+    private SharedPreferences sp;
+    private String PREF_NAME = "Log in";
 
     private int Score[];
     int yhin;
@@ -43,6 +52,8 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_question);
         getSupportActionBar().hide();
 
+        sp = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
         Text_question = findViewById(R.id.Text_question);
         button_next = findViewById(R.id.button_next_question);
         button_next.setOnClickListener(this);
@@ -53,9 +64,11 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         button_back_login = findViewById(R.id.button_back_login);
         button_back_login.setOnClickListener(this);
         radioGroup = findViewById(R.id.radio_answer);
-
+        retro = new RetrofitClient();
 
         setQuestion();
+
+         email    = sp.getString("email", "");
     }
 
     @Override
@@ -277,6 +290,8 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
             builder.setMessage("หยินของคุณคือ " + s1 + "\nหยางของคุณคือ " + s2+"\n\nร่างกายของคุณมีความเป็นหยางมากกว่า");
             builder.setIcon(R.drawable.ic_yang);
         }
+
+
         //set cancelable
         builder.setCancelable(true);
         //set positive / yes button
@@ -295,6 +310,21 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
         //show alert dialog
         alertdialog.show();
 
+        Call<DefaultResponse> call = retro.getApi().updateYhinYhang(sum_yhin,sum_yhang,email);
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                DefaultResponse res = response.body();
+                if(res.isStatus()){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+
+            }
+        });
 
     }
 

@@ -1,4 +1,5 @@
 package com.example.jittanan.yhinyhang;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
 import com.example.jittanan.yhinyhang.Fragments.Fragment_foodcomment;
 import com.example.jittanan.yhinyhang.Fragments.Fragment_graph;
 import com.example.jittanan.yhinyhang.Fragments.Fragment_profile;
@@ -26,14 +28,14 @@ import com.example.jittanan.yhinyhang.api.RetrofitClient;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     RetrofitClient retro;
-    EditText text_email ;
-    EditText pass_word ;
+    EditText text_email;
+    EditText pass_word;
     SharedPreferences sp;
     SharedPreferences.Editor edit;
-    String PREF_NAME="Log in";
+    String PREF_NAME = "Log in";
     TextView text_create;
     ActionBar toolbar;
-    Button logout ;
+    Button logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +53,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         logout.setVisibility(View.GONE);
 
-        if(!sp.getBoolean("check_login", false)){
+        if (!sp.getBoolean("SIGNIN", false)) {
             startActivity(new Intent(MainActivity.this, LogIn.class));
-
-        }
-        else {
+        } else {
             logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,10 +69,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     builder.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            MainActivity.this.finish();
                             edit.clear();
                             edit.commit();
-                            startActivity(new Intent(MainActivity.this,LogIn.class));
+
+                            startActivity(new Intent(MainActivity.this, LogIn.class));
+                            finish();
                         }
                     });
 
@@ -84,12 +85,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         }
                     });
 
-                        //create alert dialog
+                    //create alert dialog
                     AlertDialog alertdialog = builder.create();
-                        //show alert dialog
+                    //show alert dialog
                     alertdialog.show();
-
-
                 }
             });
 
@@ -104,23 +103,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.food_comment :
+        switch (item.getItemId()) {
+            case R.id.food_comment:
                 text_create.setText("รายการอาหารที่แนะนำ");
                 loadFragment(new Fragment_foodcomment());
                 logout.setVisibility(View.GONE);
                 return true;
-            case R.id.search :
+            case R.id.search:
                 text_create.setText("ค้นหาเมนูอาหาร");
                 loadFragment(new Fragment_search());
                 logout.setVisibility(View.GONE);
                 return true;
-            case R.id.graph :
+            case R.id.graph:
                 text_create.setText("ประวัติการรับประทานอาหาร");
                 loadFragment(new Fragment_graph());
                 logout.setVisibility(View.GONE);
                 return true;
-            case R.id.profile :
+            case R.id.profile:
                 text_create.setText("โปรไฟล์ของฉัน");
                 loadFragment(new Fragment_profile());
                 logout.setVisibility(View.VISIBLE);
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
-    private void loadFragment(Fragment fragment){
+    private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);

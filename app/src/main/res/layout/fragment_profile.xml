@@ -7,9 +7,9 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/layout_all"
@@ -39,7 +39,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/name_user"
+                    android:id="@+id/username_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_person"
@@ -47,38 +47,39 @@
                     android:text="ชื่อผู้ใช้"
                     android:textSize="18dp" />
 
+
                 <TextView
-                    android:id="@+id/email_user"
+                    android:id="@+id/email_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_email2"
                     android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_email2"
                     android:fontFamily="@font/printable4u"
                     android:text="อีเมล :"
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/gender_user"
+                    android:id="@+id/gender_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_wc_black_24dp"
                     android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_wc_black_24dp"
                     android:fontFamily="@font/printable4u"
                     android:text="เพศ :"
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/birth_user"
+                    android:id="@+id/birth_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_calendar"
                     android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_calendar"
                     android:fontFamily="@font/printable4u"
                     android:text="วันเกิด :"
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/element_user"
+                    android:id="@+id/element_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -88,11 +89,11 @@
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/foodlose_user"
+                    android:id="@+id/foodlose_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_harvest"
                     android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/ic_harvest"
                     android:fontFamily="@font/printable4u"
                     android:text="วัตถุดิบอาหารที่แพ้ :"
                     android:textSize="18dp" />
@@ -137,7 +138,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/body_user"
+                    android:id="@+id/body_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -149,11 +150,10 @@
                 <LinearLayout
                     android:id="@+id/layout_num_yhin"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp">
 
                     <TextView
-                        android:id="@+id/num_yhin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_yin"
@@ -163,16 +163,20 @@
                         android:textColor="#708090"
                         android:textSize="18dp" />
 
+                    <TextView
+                        android:id="@+id/num_yhin_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/layout_num_yhang"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp">
 
                     <TextView
-                        android:id="@+id/num_yhang"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/ic_yang"
@@ -182,6 +186,11 @@
                         android:textColor="#708090"
                         android:textSize="18dp" />
 
+                    <TextView
+                        android:id="@+id/num_yhang_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
 
                 <View
@@ -189,44 +198,36 @@
                     android:layout_height="1px"
                     android:layout_marginTop="8dp"
                     android:background="@color/colorAccent" />
+
                 <TextView
                     android:id="@+id/favourite"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_favorite_black_24dp"
                     android:fontFamily="@font/printable4u"
                     android:text="อาหารที่ฉันถูกใจ :"
-                    android:textSize="18dp"
-                    android:drawableLeft="@drawable/ic_favorite_black_24dp"
-
-                    />
+                    android:textSize="18dp"/>
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/printable4u"
-                    android:textSize="18dp"
+                    android:textSize="18dp" />
 
-
-                    />
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/printable4u"
-                    android:textSize="18dp"
-
-                    />
-
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
 
 </FrameLayout>
 
