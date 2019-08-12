@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jittanan.yhinyhang.R;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -19,7 +22,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class Fragment_profile extends Fragment {
 
-    private ImageView userProfile;
+    private CircleImageView userProfile;
     private TextView emailTextView, usernameTextView, genderTextView, birthdayTextView, elementTextView, foodLoseTextView, bodyTextView, numYhinTextView, numYhangTextView;
 
     private SharedPreferences sp;
@@ -80,6 +83,15 @@ public class Fragment_profile extends Fragment {
         }
         else {
             genderTextView.setText("หญิง");
+        }
+
+
+//        image = "5d51cd67d28ae.jpg";
+        if(image.isEmpty()) {
+           userProfile.setImageResource(R.drawable.user);
+        } else {
+            String url = "http://pilot.cp.su.ac.th/usr/u07580536/yhinyhang/images/" + image;
+            Picasso.get().load(url).into(userProfile);
         }
 
 

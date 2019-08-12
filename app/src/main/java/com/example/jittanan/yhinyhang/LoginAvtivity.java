@@ -129,12 +129,11 @@ public class LoginAvtivity extends AppCompatActivity {
                     edit.putString("body", body);
                     edit.putString("numYhin", numYhin);
                     edit.putString("numYhang", numYhang);
-                    edit.putString("image",image);
 
                     edit.putBoolean("SIGNIN", true);
                     edit.commit();
 
-                    Intent intent = new Intent(LoginAvtivity.this,Question.class);
+                    Intent intent = new Intent(LoginAvtivity.this, Question.class);
                     startActivity(intent);
 
                 } else {
