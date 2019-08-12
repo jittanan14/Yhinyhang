@@ -1,7 +1,7 @@
 package com.example.jittanan.yhinyhang.api;
 
-import com.example.jittanan.yhinyhang.DefaultResponse;
-import com.example.jittanan.yhinyhang.LoginResponse;
+import com.example.jittanan.yhinyhang.models.DefaultResponse;
+import com.example.jittanan.yhinyhang.models.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

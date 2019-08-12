@@ -18,4 +18,8 @@
         <item name="android:background">#E9967A</item>
     </style>
 
+    <style name="MyAppTheme.TextInputLayout" parent="@android:style/TextAppearance">
+
+    </style>
+
 </resources>

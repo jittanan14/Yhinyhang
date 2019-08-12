@@ -1,4 +1,4 @@
-package com.example.jittanan.yhinyhang;
+package com.example.jittanan.yhinyhang.models;
 
 public class User {
     private String email, password, username, gender, birthday, element, food, image_user, body, num_yhin, num_yhang;

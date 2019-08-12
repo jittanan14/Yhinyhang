@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.jittanan.yhinyhang.api.RetrofitClient;
+import com.example.jittanan.yhinyhang.models.DefaultResponse;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,7 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
                 confirmAll();
                 break;
             case R.id.button_back_login :
-                Intent intent = new Intent(Question.this,LogIn.class);
+                Intent intent = new Intent(Question.this, LoginAvtivity.class);
                 startActivity(intent);
         }
     }
@@ -315,9 +316,9 @@ public class Question extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse res = response.body();
-                if(res.isStatus()){
-
-                }
+//                if(res.isStatus()){
+//
+//                }
             }
 
             @Override

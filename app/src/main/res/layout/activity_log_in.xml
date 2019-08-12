@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_bg2"
     android:orientation="vertical"
-    tools:context=".LogIn">
+    tools:context=".LoginAvtivity">
 
     <RelativeLayout
         android:id="@+id/yhin"
@@ -20,7 +20,7 @@
             android:layout_marginTop="250dp"
             android:fontFamily="@font/printable4u"
             android:gravity="center"
-            android:text="YHINYHANG"
+            android:text="YINYANG"
             android:textColor="#FFFFFF"
             android:textSize="50dp"
             android:textStyle="bold"

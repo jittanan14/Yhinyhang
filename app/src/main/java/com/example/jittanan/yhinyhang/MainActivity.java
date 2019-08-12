@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.example.jittanan.yhinyhang.Fragments.Fragment_foodcomment;
 import com.example.jittanan.yhinyhang.Fragments.Fragment_graph;
@@ -54,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         logout.setVisibility(View.GONE);
 
         if (!sp.getBoolean("SIGNIN", false)) {
-            startActivity(new Intent(MainActivity.this, LogIn.class));
+            startActivity(new Intent(MainActivity.this, LoginAvtivity.class));
+            finish();
         } else {
             logout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             edit.clear();
                             edit.commit();
 
-                            startActivity(new Intent(MainActivity.this, LogIn.class));
+                            startActivity(new Intent(MainActivity.this, LoginAvtivity.class));
                             finish();
                         }
                     });

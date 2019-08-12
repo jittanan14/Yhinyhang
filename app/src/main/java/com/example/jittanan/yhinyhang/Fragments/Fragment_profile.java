@@ -83,6 +83,7 @@ public class Fragment_profile extends Fragment {
         }
 
 
+
         return view;
     }
 

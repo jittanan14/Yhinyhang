@@ -10,14 +10,13 @@
     <LinearLayout
         android:id="@+id/layout_image"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
-<ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="160dp"
-    android:src="@drawable/yinyang"
-    android:layout_marginTop="200dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/yinyang" />
 
     </LinearLayout>
 
@@ -26,21 +25,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_image"
-        android:layout_centerHorizontal="true"
-        >
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="YINYANG"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/printable4u"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/printable4u"
+            android:text="YINYANG"
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>

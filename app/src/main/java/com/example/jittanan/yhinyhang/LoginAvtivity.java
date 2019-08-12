@@ -12,12 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jittanan.yhinyhang.api.RetrofitClient;
+import com.example.jittanan.yhinyhang.models.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LogIn extends AppCompatActivity {
+public class LoginAvtivity extends AppCompatActivity {
 
     RetrofitClient retro;
     EditText text_email;
@@ -31,6 +32,8 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+        getSupportActionBar().hide();
+
         sp = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         edit = sp.edit();
 
@@ -39,36 +42,28 @@ public class LogIn extends AppCompatActivity {
         text_email = findViewById(R.id.TextEmail_login);
         pass_word = findViewById(R.id.TextPassword_login);
 
-        getSupportActionBar().hide();
+
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
-        TextView regis = findViewById(R.id.signup);
-        regis.setOnClickListener(new View.OnClickListener() {
+
+        TextView signIn = findViewById(R.id.signin);
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Register.class);
-                startActivity(intent);
+                userLogin();
             }
         });
 
-        TextView sig_in = findViewById(R.id.signin);
-        sig_in.setOnClickListener(new View.OnClickListener() {
+        TextView signUp = findViewById(R.id.signup);
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.signin:
-                        userLogin();
-                        break;
-                    case R.id.signup:
-                        startActivity(new Intent(LogIn.this, Register.class));
-                        break;
-                }
+                startActivity(new Intent(LoginAvtivity.this, RegisterActivity.class));
+                finish();
             }
         });
-
-
     }
 
     private void userLogin() {
@@ -109,7 +104,7 @@ public class LogIn extends AppCompatActivity {
                     System.out.println(response.body().getMessages());
                     System.out.println(response.body().getUser().getEmail());
 
-                    Toast.makeText(LogIn.this, response.body().getMessages(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(LoginAvtivity.this, response.body().getMessages(), Toast.LENGTH_LONG).show();
 
                     String email      = response.body().getUser().getEmail();
                     String username   = response.body().getUser().getUsername();
@@ -120,7 +115,7 @@ public class LogIn extends AppCompatActivity {
                     String image      = response.body().getUser().getImage_user();
                     String body       = response.body().getUser().getBody();
                     String numYhin    = response.body().getUser().getNum_yhin();
-                    String numYhang    = response.body().getUser().getNum_yhang();
+                    String numYhang   = response.body().getUser().getNum_yhang();
 
                     Log.e("User", username);
 
@@ -134,25 +129,23 @@ public class LogIn extends AppCompatActivity {
                     edit.putString("body", body);
                     edit.putString("numYhin", numYhin);
                     edit.putString("numYhang", numYhang);
+                    edit.putString("image",image);
 
                     edit.putBoolean("SIGNIN", true);
                     edit.commit();
 
-                    if(numYhin.equals("0") || numYhang.equals("0")) {
-                        startActivity(new Intent(LogIn.this, Question.class));
-                    }else {
-                        startActivity(new Intent(LogIn.this, MainActivity.class));
-                    }
+                    Intent intent = new Intent(LoginAvtivity.this,Question.class);
+                    startActivity(intent);
 
                 } else {
-                    Toast.makeText(LogIn.this, response.body().getMessages(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginAvtivity.this, response.body().getMessages(), Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LogIn.this, "ไม่ได้เชื่อมต่ออินเทอร์เน็ต", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginAvtivity.this, "ไม่ได้เชื่อมต่ออินเทอร์เน็ต", Toast.LENGTH_LONG).show();
             }
         });
 

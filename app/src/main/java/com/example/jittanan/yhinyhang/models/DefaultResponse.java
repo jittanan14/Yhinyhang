@@ -1,9 +1,10 @@
-package com.example.jittanan.yhinyhang;
+package com.example.jittanan.yhinyhang.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DefaultResponse {
+
     @SerializedName("status")
     @Expose
     private boolean status;

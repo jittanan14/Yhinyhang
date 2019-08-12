@@ -1,10 +1,12 @@
-package com.example.jittanan.yhinyhang;
+package com.example.jittanan.yhinyhang.models;
 
 
+import com.example.jittanan.yhinyhang.models.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginResponse {
+
     @SerializedName("status")
     @Expose
     private boolean status;
